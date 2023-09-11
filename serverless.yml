@@ -3,7 +3,7 @@ provider:
   name: aws
   runtime: python3.9
   region: eu-west-3
-  role: arn:aws:iam::545076237434:role/lambda-execution-role
+  role: arn:aws:iam::YOUR_AWS_ACCOUNT_ID:role/lambda-execution-role
 
 functions:
   scrapJobOffer:

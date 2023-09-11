@@ -52,8 +52,10 @@ def scrape_job_urls(event, context):
                 FunctionName=JOB_OFFER_SCRAPER_ARN,
                 Environment={"Variables": {"RANDOM_HASH_TO_FORCE_COLD_START": str(uuid.uuid4())}},
             )
+            # Wait for the lamdbda to be updated
             waiter = client.get_waiter("function_updated")
             waiter.wait(FunctionName=JOB_OFFER_SCRAPER_ARN)
+            # Launch the scraper again
             lambda_response = client.invoke(
                 FunctionName=JOB_OFFER_SCRAPER_ARN,
                 InvocationType="RequestResponse",
